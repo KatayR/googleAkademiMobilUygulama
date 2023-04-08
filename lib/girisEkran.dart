@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
 import 'webViewFile.dart';
-import 'welcome.dart';
+import 'home_page_view.dart';
 
 class GirisEkrani extends StatefulWidget {
   const GirisEkrani({Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(

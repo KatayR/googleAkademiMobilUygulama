@@ -1,15 +1,54 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'girisEkran.dart';
+import 'home_page_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+bool? finalLoginData;
+
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    getLoginData().whenComplete(() async {
+      print('get navi öncesi');
+      Future.delayed(Duration(seconds: 2));
+      print('get navi sonraası');
+    });
+    super.initState();
+  }
+
+  Future getLoginData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var obtainedLoginData = sharedPreferences.getBool('loggedIn');
+    setState(() {
+      finalLoginData = obtainedLoginData;
+    });
+    print(finalLoginData);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: GirisEkrani(),
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(
+        duration: 2000,
+        splash: 'assets/splash.jpg',
+        nextScreen: HomePage(),
+        splashTransition: SplashTransition.fadeTransition,
+        pageTransitionType: PageTransitionType.fade,
+      ),
     );
   }
 }

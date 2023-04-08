@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:wvdeneme/welcome.dart';
+import 'package:wvdeneme/home_page_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WebScreen extends StatefulWidget {
   String email;
@@ -50,14 +51,22 @@ class WebScreenState extends State<WebScreen> {
             }
           },
           onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
+          onNavigationRequest: (NavigationRequest request) async {
+            // ********
             if (request.url
                 .startsWith('https://oyunveuygulamaakademisi.com/egitimler')) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Wlcm();
-              }));
+              final SharedPreferences sharedPreferences =
+                  await SharedPreferences.getInstance();
+              sharedPreferences.setBool('loggedIn', true);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return HomePage();
+                }),
+              );
             }
             return NavigationDecision.navigate;
+            // *************
           },
         ),
       )
