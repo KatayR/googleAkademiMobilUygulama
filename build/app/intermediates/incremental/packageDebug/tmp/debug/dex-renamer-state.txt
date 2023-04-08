@@ -1,4 +1,0 @@
-#Sat Apr 08 17:59:27 TRT 2023
-base.0=C\:\\Users\\rasit\\StudioProjects\\wvdeneme\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
