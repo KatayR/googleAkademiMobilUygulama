@@ -29,6 +29,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
             // iphone141oUw (0:3)
             padding: EdgeInsets.fromLTRB(0 * fem, 35 * fem, 0 * fem, 30 * fem),
             width: double.infinity,
+
             decoration: BoxDecoration(
               color: Color(0xffffffff),
             ),
@@ -54,9 +55,9 @@ class _GirisEkraniState extends State<GirisEkrani> {
                   child: Container(
                     // autogroupgmcfK5u (VrKMz4GRikWP7H1JZ2GMcf)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 60 * fem),
+                        0 * fem, 0 * fem, 0 * fem, 40 * fem),
                     padding: EdgeInsets.fromLTRB(
-                        63 * fem, 43.52 * fem, 63 * fem, 118.48 * fem),
+                        63 * fem, 43.52 * fem, 63 * fem, 48.48 * fem),
                     width: 392 * fem,
                     decoration: BoxDecoration(
                       image: DecorationImage(

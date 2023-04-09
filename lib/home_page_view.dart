@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wvdeneme/main.dart';
 import 'premodules_view.dart';
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DateTime timeBackPressed = DateTime.now();
+  var currentTime;
   @override
   Widget build(BuildContext context) {
     var matrixText1 = const MyCustomText(text: "FLUTTER");
@@ -26,21 +27,20 @@ class _HomePageState extends State<HomePage> {
 
     return WillPopScope(
       onWillPop: () async {
-        print("back");
-        final difference = DateTime.now().difference(timeBackPressed);
-        final isExitWarning = difference >= Duration(seconds: 2);
-
-        timeBackPressed = DateTime.now();
-        if (isExitWarning) {
-          final message = "Çıkmak için bir daha dokunun";
-          Fluttertoast.showToast(msg: message, fontSize: 20);
-
-          Navigator.of(context).popUntil((route) => route.isFirst);
-          exit(0);
+        DateTime now = DateTime.now();
+        if (currentTime == null ||
+            now.difference(currentTime) > Duration(seconds: 2)) {
+          //add duration of press gap
+          currentTime = now;
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  'Çıkmak için yeniden basın'))); //scaffold message, you can show Toast message too.
+          return Future.value(false);
         } else {
-          Fluttertoast.cancel();
-          return false;
+          SystemNavigator.pop();
+          exit(0);
         }
+        ;
       },
       child: SafeArea(
         child: Scaffold(
