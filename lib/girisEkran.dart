@@ -79,7 +79,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          // autogroupz1skqyM (VrKNDy2v7PFPCDsHitZ1SK)
+                          // ev7d (12:6)
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 18 * fem),
                           padding: EdgeInsets.fromLTRB(
@@ -89,32 +89,27 @@ class _GirisEkraniState extends State<GirisEkrani> {
                             color: Color(0xffffffff),
                             borderRadius: BorderRadius.circular(50 * fem),
                           ),
-                          child: Container(
-                            // ev7d (12:6)
-                            margin: EdgeInsets.fromLTRB(
-                                3 * fem, 0 * fem, 0 * fem, 0 * fem),
-                            child: TextField(
-                              onChanged: (value) {
-                                email = value;
-                              },
-                              decoration: (const InputDecoration())
-                                  .applyDefaults(theme.inputDecorationTheme)
-                                  .copyWith(hintText: 'E-mail adresi'),
-                              keyboardType: TextInputType.emailAddress,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
+                          child: TextField(
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            decoration: (const InputDecoration())
+                                .applyDefaults(theme.inputDecorationTheme)
+                                .copyWith(hintText: 'E-mail adresi'),
+                            keyboardType: TextInputType.emailAddress,
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2125 * ffem / fem,
+                              color: Color(0xff000000),
                             ),
                           ),
                         ),
                         Container(
-                          // autogrouppvshmtw (VrKNQJ53JHY2mR5kCMpVsH)
+                          // FSj (12:7)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 19 * fem),
+                              0 * fem, 0 * fem, 0 * fem, 11 * fem),
                           padding: EdgeInsets.fromLTRB(
                               27 * fem, 8 * fem, 27 * fem, 12 * fem),
                           width: double.infinity,
@@ -122,50 +117,42 @@ class _GirisEkraniState extends State<GirisEkrani> {
                             color: Color(0xffffffff),
                             borderRadius: BorderRadius.circular(50 * fem),
                           ),
-                          child: Container(
-                            // FSj (12:7)
-                            margin: EdgeInsets.fromLTRB(
-                                7 * fem, 0 * fem, 0 * fem, 0 * fem),
-                            child: TextField(
-                              obscureText: true,
-                              onChanged: (value) {
-                                password = value;
-                              },
-                              decoration: (const InputDecoration())
-                                  .applyDefaults(theme.inputDecorationTheme)
-                                  .copyWith(hintText: 'Parola'),
-                              keyboardType: TextInputType.emailAddress,
-                              style: SafeGoogleFont(
-                                'Inter',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.2125 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value) {
+                              password = value;
+                            },
+                            decoration: (const InputDecoration())
+                                .applyDefaults(theme.inputDecorationTheme)
+                                .copyWith(hintText: 'Parola'),
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2125 * ffem / fem,
+                              color: Color(0xff000000),
                             ),
                           ),
                         ),
                         Container(
                           width: 120,
                           height: 43,
-                          child: Material(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(30),
-                            child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => WebScreen(
-                                              email: email,
-                                              password: password)));
-                                },
-                                child: Text(
-                                  'GİRİŞ',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 17),
-                                )),
-                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WebScreen(
+                                            email: email, password: password)));
+                              },
+                              child: Text(
+                                'GİRİŞ',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 17),
+                              )),
                         )
                       ],
                     ),

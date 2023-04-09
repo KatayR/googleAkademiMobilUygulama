@@ -46,8 +46,7 @@ class _MyAppState extends State<MyApp> {
       home: AnimatedSplashScreen(
         duration: 2000,
         splash: 'assets/splash.jpg',
-        nextScreen: HomePage(),
-        // finalLoginData == null ? GirisEkrani() : HomePage()
+        nextScreen: finalLoginData == null ? GirisEkrani() : HomePage(),
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,
       ),
