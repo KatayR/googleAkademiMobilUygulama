@@ -10,6 +10,22 @@ class Strings {
   static const modules_title = "MODÜLLER";
 }
 
+class DerslerMap {
+  static const modul1 = {
+    "Flutter Kurulumu: Flutter SDK": "RKwJwCaaFec",
+    "Flutter Kurulumu: PATH Ayarları": "_7f_43nDiSY",
+    "Flutter Kurulumu: Android Studio": "905L1sv1nq4",
+    "Flutter Kurulumu: Örnek Proje Yaratma": "xxAwKhI-lsM",
+  };
+  static const modul2 = {
+    "Flutter: Örnek Proje": "YOidpKRZf4A",
+    "Flutter ve Dart Uygulamaları": "B8Sfz0d8ugA",
+    "Değişkenler ve Fonksiyonlar": "7yUGdZppZYk",
+    "Fonksiyonlar": "Qpc2p0DEmj4",
+  };
+  static const modulListOfMaps = [modul1, modul2];
+}
+
 class Assets {
   static const homePageImg = 'assets/page-1/images/homepageimg8-1.png';
   static const exitIcon = 'assets/page-1/images/mingcute-exit-fill.png';
@@ -17,7 +33,7 @@ class Assets {
   static const flutter = 'assets/page-1/images/flutter.png';
   static const gazihan = 'assets/page-1/images/gazihan.png';
   static const flutter2_modules = [
-    MyCustomText(text: "Modül:1 Flutter kurulumu"),
+    MyCustomText(text: "Modül 1: Flutter kurulumu"),
     MyCustomText(text: "Modül 2: Dart Dilini ve IDE'yi Tanıma"),
     MyCustomText(text: "Modül 3: Dart Dilini Derinlemesine Tanıma"),
     MyCustomText(text: "Modül 4: Dart ile Nesne Tabanlı Programlama"),

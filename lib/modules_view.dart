@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wvdeneme/main.dart';
+import 'package:wvdeneme/video_screen_view.dart';
 import '../models/class_models.dart';
 
 class Modules extends StatefulWidget {
@@ -92,7 +93,10 @@ class _ModulesState extends State<Modules> {
                             // flutter dersleri
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return MyApp();
+                              return VideoPageView(
+                                  moduleLabel:
+                                      Assets.flutter2_modules[index].text,
+                                  moduleIndex: index);
                             }));
                           },
                         ),
