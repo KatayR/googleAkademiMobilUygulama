@@ -76,6 +76,22 @@ class WebScreenState extends State<WebScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WebViewWidget(controller: controller);
+    return SafeArea(
+      child: Stack(children: [
+        WebViewWidget(controller: controller),
+        FractionallySizedBox(
+          widthFactor: 1.0, // between 0 and 1 // 1 for max
+          heightFactor: 1.0,
+          child: Container(
+            color: Colors.grey,
+            child: Text(
+              'Buraya spinner ekleneecek',
+              style: TextStyle(fontSize: 50),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        )
+      ]),
+    );
   }
 }

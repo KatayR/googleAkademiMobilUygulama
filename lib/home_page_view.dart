@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:wvdeneme/main.dart';
-
+import 'premodules_view.dart';
 import '../models/class_models.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,20 +23,20 @@ class _HomePageState extends State<HomePage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(height: 30),
               SizedBox(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Image.asset(
-                    Assets.homePageImg,
-                    height: MediaQuery.of(context).size.height * 0.07,
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Image.asset(
+                      Assets.homePageImg,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                    ),
                   ),
                   Expanded(
                     child: Text(
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                             // flutter dersleri
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return MyApp();
+                              return PreModules();
                             }));
                           },
                         ),
@@ -115,25 +115,27 @@ class _HomePageState extends State<HomePage> {
                             })
                       ],
                     ),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: GestureDetector(
-                          onTap: () {
-                            // log out bağlantısı
-                          },
-                          child: SizedBox(
-                            height: 38,
-                            width: 38,
-                            child: Image.asset(Assets.exitIcon),
-                          ),
-                        )),
+                    // Padding(
+                    //     padding: const EdgeInsets.symmetric(vertical: 10),
+                    //     child: GestureDetector(
+                    //       onTap: () {
+                    //         // log out bağlantısı
+                    //       },
+                    //       child: SizedBox(
+                    //         height: 38,
+                    //         width: 38,
+                    //         child: Image.asset(Assets.exitIcon),
+                    //       ),
+                    //     )),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  width: 263,
-                  child: Image.asset(Assets.homePageBottomImg))
+              Expanded(
+                child: Image.asset(
+                  Assets.homePageBottomImg,
+                  fit: BoxFit.cover,
+                ),
+              )
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'home_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'premodules_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
         duration: 2000,
         splash: 'assets/splash.jpg',
         nextScreen: HomePage(),
+        // finalLoginData == null ? GirisEkrani() : HomePage()
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,
       ),
