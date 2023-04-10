@@ -82,13 +82,6 @@ class WebScreenState extends State<WebScreen> with TickerProviderStateMixin {
     return SafeArea(
       child: Stack(children: [
         WebViewWidget(controller: controller),
-        AnimatedSplashScreen(
-          duration: 2000,
-          splash: 'assets/splash.jpg',
-          nextScreen: HomePage(),
-          splashTransition: SplashTransition.fadeTransition,
-          pageTransitionType: PageTransitionType.fade,
-        )
       ]),
     );
   }

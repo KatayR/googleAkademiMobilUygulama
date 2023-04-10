@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         duration: 2000,
         splash: 'assets/splash.jpg',
         nextScreen: finalLoginData == null ? GirisEkrani() : HomePage(),
-        splashTransition: SplashTransition.fadeTransition,
+        splashTransition: SplashTransition.slideTransition,
         pageTransitionType: PageTransitionType.fade,
       ),
     );
