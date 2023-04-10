@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wvdeneme">
    <application
-        android:label="wvdeneme"
+        android:label="OUA Akademi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -26,86 +26,88 @@ class _ModulesState extends State<Modules> {
 
     return SafeArea(
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            //2
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              expandedHeight: 150.0,
-              flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  titlePadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                  title: Text(
-                    'Flutter ile Uygulama Geliştirme Eğitimleri',
-                    textScaleFactor: 1,
-                    style: TextStyle(color: Colors.black, shadows: [
-                      Shadow(
-                          // bottomRight
-                          offset: Offset(1.0, 1.0),
-                          color: Colors.grey),
-                    ]),
-                  ),
-                  background: ShaderMask(
-                    shaderCallback: (rect) {
-                      return LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black,
-                          Colors.transparent.withOpacity(0.8)
-                        ],
-                      ).createShader(
-                          Rect.fromLTRB(0, 0, rect.width, rect.height));
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: Image.asset(
-                      Assets.gazihan,
-                      fit: BoxFit.fitWidth,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topRight,
+                colors: <Color>[Colors.grey.shade400, Colors.white]),
+          ),
+          child: CustomScrollView(
+            slivers: <Widget>[
+              //2
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                expandedHeight: 150.0,
+                flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: true,
+                    titlePadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    title: Text(
+                      'Flutter ile Uygulama Geliştirme Eğitimleri',
+                      textScaleFactor: 1,
+                      style: TextStyle(color: Colors.black, shadows: [
+                        Shadow(
+                            // bottomRight
+                            offset: Offset(1.0, 1.0),
+                            color: Colors.grey),
+                      ]),
                     ),
-                  )
-                  // Image.asset(
-                  //   'assets/page-1/images/gazihan.png',
-                  //   alignment: FractionalOffset(0.67, 0.67),
-                  //   fit: BoxFit.fitWidth,
-                  // ),
-                  ),
-            ),
-            //3
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5.0,
-                  crossAxisSpacing: 15.0,
-                  childAspectRatio: 1.7),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    padding: index.isEven
-                        ? EdgeInsets.only(left: 25)
-                        : EdgeInsets.only(right: 25),
-                    alignment: Alignment.center,
-                    child: Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Button(
-                        childText: Assets.flutter2_modules[index],
-                        onPressed: () {
-                          // flutter dersleri
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return VideoPageView(
-                                moduleLabel:
-                                    Assets.flutter2_modules[index].text,
-                                moduleIndex: index);
-                          }));
-                        },
+                    background: ShaderMask(
+                      shaderCallback: (rect) {
+                        return LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black,
+                            Colors.transparent.withOpacity(0.8)
+                          ],
+                        ).createShader(
+                            Rect.fromLTRB(0, 0, rect.width, rect.height));
+                      },
+                      blendMode: BlendMode.dstIn,
+                      child: Image.asset(
+                        Assets.gazihan,
+                        fit: BoxFit.fitWidth,
                       ),
-                    ),
-                  );
-                },
-                childCount: Assets.flutter2_modules.length,
+                    )),
               ),
-            ),
-          ],
+              //3
+              SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5.0,
+                    crossAxisSpacing: 1.0,
+                    childAspectRatio: 1.7),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Container(
+                      padding: index.isEven
+                          ? EdgeInsets.only(left: 25)
+                          : EdgeInsets.only(right: 25),
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Button(
+                          childText: Assets.flutter2_modules[index],
+                          onPressed: () {
+                            // flutter dersleri
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return VideoPageView(
+                                  moduleLabel:
+                                      Assets.flutter2_modules[index].text,
+                                  moduleIndex: index);
+                            }));
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: Assets.flutter2_modules.length,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

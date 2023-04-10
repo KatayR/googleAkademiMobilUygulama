@@ -46,13 +46,7 @@ class _PreModulesState extends State<PreModules> {
                     children: [
                       Button(
                         childText: matrixText1,
-                        onPressed: () {
-                          // flutter dersleri
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Modules();
-                          }));
-                        },
+                        onPressed: () {},
                       ),
                       Button(
                         childText: matrixText2,
@@ -66,13 +60,7 @@ class _PreModulesState extends State<PreModules> {
                       ),
                       Button(
                         childText: matrixText3,
-                        onPressed: () {
-                          // flutter dersleri
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Modules();
-                          }));
-                        },
+                        onPressed: () {},
                       ),
                     ],
                   ),
@@ -90,7 +78,7 @@ class _PreModulesState extends State<PreModules> {
                         Colors.transparent.withOpacity(0.4)
                       ],
                     ).createShader(
-                        Rect.fromLTRB(0, 0, rect.width, rect.height));
+                        Rect.fromLTRB(0, 50, rect.width, rect.height));
                   },
                   blendMode: BlendMode.dstIn,
                   child: Image.asset(

@@ -1,3 +1,5 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:wvdeneme/home_page_view.dart';
@@ -14,7 +16,8 @@ class WebScreen extends StatefulWidget {
       WebScreenState(email: email, password: password);
 }
 
-class WebScreenState extends State<WebScreen> {
+class WebScreenState extends State<WebScreen> with TickerProviderStateMixin {
+  late AnimationController animcontroller;
   late final WebViewController controller;
   late final WebViewCookieManager cookieManager;
   String email;
@@ -79,17 +82,12 @@ class WebScreenState extends State<WebScreen> {
     return SafeArea(
       child: Stack(children: [
         WebViewWidget(controller: controller),
-        FractionallySizedBox(
-          widthFactor: 1.0, // between 0 and 1 // 1 for max
-          heightFactor: 1.0,
-          child: Container(
-            color: Colors.grey,
-            child: Text(
-              'Buraya spinner ekleneecek',
-              style: TextStyle(fontSize: 50),
-              textAlign: TextAlign.center,
-            ),
-          ),
+        AnimatedSplashScreen(
+          duration: 2000,
+          splash: 'assets/splash.jpg',
+          nextScreen: HomePage(),
+          splashTransition: SplashTransition.fadeTransition,
+          pageTransitionType: PageTransitionType.fade,
         )
       ]),
     );

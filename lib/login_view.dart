@@ -23,7 +23,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Container(
             // iphone141oUw (0:3)
@@ -77,7 +77,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           // ev7d (12:6)
