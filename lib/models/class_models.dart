@@ -1,4 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'dart:ui';
+
+class GoogleColors {
+  static var blue = Color.fromRGBO(66, 133, 244, 1);
+  static var red = Color.fromRGBO(219, 68, 55, 1);
+  static var yellow = Color.fromRGBO(244, 180, 0, 1);
+  static var green = Color.fromRGBO(15, 157, 8, 1);
+}
+
+abstract class noteColors {
+  // /// Dark background color.
+  // static const Color backgroundColor = Color(0xFF191D1F);
+  //
+  // /// Slightly lighter version of [backgroundColor].
+  // static const Color backgroundFadedColor = Color(0xFF191B1C);
+  //
+  // /// Color used for cards and surfaces.
+  // static const Color cardColor = Color(0xFF1F2426);
+  //
+  // /// Accent color used in the application.
+  // static const Color accentColor = Color(0xFFef8354);
+  static final bg = Color.fromRGBO(253, 243, 176, 1);
+}
+
+class CustomRectTween extends RectTween {
+  /// {@macro custom_rect_tween}
+  CustomRectTween({
+    required Rect begin,
+    required Rect end,
+  }) : super(begin: begin, end: end);
+
+  @override
+  Rect lerp(double t) {
+    final elasticCurveValue = Curves.easeOut.transform(t);
+    return Rect.fromLTRB(
+      lerpDouble(begin!.left, end!.left, elasticCurveValue)!,
+      lerpDouble(begin!.top, end!.top, elasticCurveValue)!,
+      lerpDouble(begin!.right, end!.right, elasticCurveValue)!,
+      lerpDouble(begin!.bottom, end!.bottom, elasticCurveValue)!,
+    );
+  }
+}
 
 class Strings {
   static const homePageTitle = Text(

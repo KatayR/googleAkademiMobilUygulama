@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wvdeneme/models/class_models.dart';
+import 'package:wvdeneme/models/notePreferences.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../models/note_app.dart';
+import '../models/hero_dialog_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VideoPageView extends StatefulWidget {
   final String moduleLabel;
@@ -19,7 +22,7 @@ class _VideoPageViewState extends State<VideoPageView> {
   final moduleLabel;
   final int moduleIndex;
   YoutubePlayerController? _controller;
-  late String _videoTitle =
+  late String videoTitle =
       DerslerMap.modulListOfMaps[moduleIndex].keys.toList()[0];
   String ytLink = "";
 
@@ -39,8 +42,8 @@ class _VideoPageViewState extends State<VideoPageView> {
 
   @override
   void dispose() {
-    super.dispose();
     _controller?.dispose();
+    super.dispose();
   }
 
   @override
@@ -52,24 +55,60 @@ class _VideoPageViewState extends State<VideoPageView> {
             showVideoProgressIndicator: true,
             progressIndicatorColor: Colors.amber,
             progressColors: ProgressBarColors(
-              playedColor: Color.fromRGBO(111, 64, 137, 1),
-              handleColor: Color(0xFF592F8B),
+              playedColor: Colors.redAccent,
+              handleColor: GoogleColors.red,
             )),
         builder: (context, player) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.black),
-              title: Expanded(
-                child: Text(
-                  _videoTitle,
+          return SafeArea(
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                backgroundColor: GoogleColors.blue,
+                iconTheme: IconThemeData(color: Colors.black),
+                title: Text(
+                  videoTitle,
                   style: TextStyle(color: Colors.black),
                 ),
+                actions: [
+                  IconButton(
+                    icon: Hero(
+                      tag: _heroAddNote,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: noteColors.bg,
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: (Colors.grey[400])!,
+                                  offset: Offset(0.5, 0.5),
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.2),
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-0.5, -0.5),
+                                blurRadius: 0.5,
+                                spreadRadius: 0.2,
+                              ),
+                            ]),
+                        child: Icon(
+                          Icons.sticky_note_2_outlined,
+                          color: Colors.grey.shade800,
+                          size: 35,
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(HeroDialogRoute(builder: (context) {
+                        return _AddNotePopupCard(title: videoTitle);
+                      }));
+                    },
+                  ),
+                ],
               ),
-            ),
-            drawer: Drawer(
-              backgroundColor: Colors.blue.shade400,
-              child: SafeArea(
+              drawer: Drawer(
+                backgroundColor: GoogleColors.blue,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -103,7 +142,7 @@ class _VideoPageViewState extends State<VideoPageView> {
                                 _controller!.load(DerslerMap
                                     .modulListOfMaps[moduleIndex].values
                                     .toList()[index]);
-                                _videoTitle = DerslerMap
+                                videoTitle = DerslerMap
                                     .modulListOfMaps[moduleIndex].keys
                                     .toList()[index];
                               });
@@ -116,27 +155,119 @@ class _VideoPageViewState extends State<VideoPageView> {
                   ],
                 ),
               ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Container(
-                      alignment: Alignment.center,
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Container(
+                        alignment: Alignment.center,
+                      ),
                     ),
-                  ),
-                  player,
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Notes(),
-                  ))
-                ],
+                    player,
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Notes(
+                        title: videoTitle,
+                        not: Text(
+                          "of"
+
+                          // finalNoteData[finalNoteData.indexOf(videoTitle) + 1]
+                          ,
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ),
+                    ))
+                  ],
+                ),
               ),
             ),
           );
         });
+  }
+}
+
+const String _heroAddNote = 'add-note-hero';
+
+class _AddNotePopupCard extends StatefulWidget {
+  var title;
+  _AddNotePopupCard({Key? key, required this.title}) : super(key: key);
+
+  @override
+  State<_AddNotePopupCard> createState() =>
+      _AddNotePopupCardState(title: title);
+}
+
+class _AddNotePopupCardState extends State<_AddNotePopupCard> {
+  var title;
+  _AddNotePopupCardState({required this.title});
+  final textController = TextEditingController();
+  static String notes = "";
+  @override
+  void initState() {
+    textController.text = notes;
+    super.initState();
+  }
+
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Hero(
+          tag: _heroAddNote,
+          createRectTween: (begin, end) {
+            return CustomRectTween(begin: begin!, end: end!);
+          },
+          child: Material(
+            color: noteColors.bg,
+            elevation: 2,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Divider(
+                      color: Colors.white,
+                      thickness: 0.2,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.multiline,
+                      controller: textController,
+                      decoration: InputDecoration(
+                        hintText: 'Bir not yazın',
+                        border: InputBorder.none,
+                      ),
+                      cursorColor: Colors.white,
+                      maxLines: 7,
+                    ),
+                    const Divider(
+                      color: Colors.white,
+                      thickness: 0.2,
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        // await notePreferences.init();
+                      },
+                      child: const Text('Kaydet'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

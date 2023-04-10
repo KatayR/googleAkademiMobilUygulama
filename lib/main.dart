@@ -8,8 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'premodules_view.dart';
+import 'package:wvdeneme/models/notePreferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
@@ -34,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   Future getLoginData() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
+
     var obtainedLoginData = sharedPreferences.getBool('loggedIn');
     setState(() {
       finalLoginData = obtainedLoginData;

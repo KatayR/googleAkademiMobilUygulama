@@ -84,22 +84,20 @@ class _ModulesState extends State<Modules> {
                         ? EdgeInsets.only(left: 25)
                         : EdgeInsets.only(right: 25),
                     alignment: Alignment.center,
-                    child: Flexible(
-                      child: Container(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Button(
-                          childText: Assets.flutter2_modules[index],
-                          onPressed: () {
-                            // flutter dersleri
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (context) {
-                              return VideoPageView(
-                                  moduleLabel:
-                                      Assets.flutter2_modules[index].text,
-                                  moduleIndex: index);
-                            }));
-                          },
-                        ),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Button(
+                        childText: Assets.flutter2_modules[index],
+                        onPressed: () {
+                          // flutter dersleri
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return VideoPageView(
+                                moduleLabel:
+                                    Assets.flutter2_modules[index].text,
+                                moduleIndex: index);
+                          }));
+                        },
                       ),
                     ),
                   );

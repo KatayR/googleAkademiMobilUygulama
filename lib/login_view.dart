@@ -23,7 +23,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Container(
             // iphone141oUw (0:3)
