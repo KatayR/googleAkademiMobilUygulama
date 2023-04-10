@@ -2,9 +2,17 @@ Oyun ve Uygulama Akademisi mobil uygulaması
 
 AppJam için, sevgiyle hazırlanmıştır
 
-## Getting Started
+## Neler var? 
 
-Kemerleri bağlayın?
+-Gerçek login  sistemi
+
+-Ders videolarına erişim
+
+-Video başına not alma özelliği 
+
+-Gerrrrçek öz hakiki doğrulamalı login sistemi
+
+-Bazı özelliklere ince ayar çekmek için harcanmış bolca zaman... 
 
 
 
