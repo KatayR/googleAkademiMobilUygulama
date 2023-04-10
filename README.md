@@ -1,16 +1,33 @@
-# wvdeneme
+Oyun ve Uygulama Akademisi mobil uygulaması
 
-A new Flutter project.
+AppJam için, sevgiyle hazırlanmıştır
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## //TODO 
+-Notlar çevrimiçi veritabanında kaydedilecek
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-Diğer bursiyerlerin o dersle ilgili notları görüntülenebilecek
+
+-Videodaki dakika ve saniye bilgisi, not alırken kenara taglenecek
+
+-Ders başına kaynak paylaşımlarının yapılabildiği yardımlaşma sekmesi eklenecek
+
+-Tasarım bi şeye benzetilecek
+
+-Web scraping ile tüm modüller eklenecek
+
+-Video izlenince sitede de görev geçme sistemi entegre edilecek
+
+-Değerlendirme soruları eklenecek
+
+-Değerlendirme sorularının altına ipucu bölümü eklenecek
+
+-Giriş sistemi geliştirilecek
+
+-Akademi duyuruları için Iconbutton ve push notification eklenecek
+
+-Dersin konusundan (Flutter, Unity, Girişimcilik vb.) doğrudan ilgii Slack kanalına yönlendiren link eklenecek
+
+-Bi daha kod yetiştirmek için 7 kupa kahve içilmeyecek
