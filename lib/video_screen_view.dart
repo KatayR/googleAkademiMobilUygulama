@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wvdeneme/models/class_models.dart';
-import 'package:wvdeneme/models/notePreferences.dart';
+
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../models/note_app.dart';
+
 import '../models/hero_dialog_route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class VideoPageView extends StatefulWidget {
   final String moduleLabel;
@@ -18,6 +19,7 @@ class VideoPageView extends StatefulWidget {
 }
 
 class _VideoPageViewState extends State<VideoPageView> {
+  final mybox = Hive.box('box');
   _VideoPageViewState({required this.moduleLabel, required this.moduleIndex});
   final moduleLabel;
   final int moduleIndex;
@@ -74,35 +76,40 @@ class _VideoPageViewState extends State<VideoPageView> {
                   IconButton(
                     icon: Hero(
                       tag: _heroAddNote,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: noteColors.bg,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: (Colors.grey[400])!,
-                                  offset: Offset(0.5, 0.5),
+                      child: SizedBox(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: noteColors.bg,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: (Colors.grey[400])!,
+                                    offset: Offset(0.5, 0.5),
+                                    blurRadius: 0.5,
+                                    spreadRadius: 0.2),
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-0.5, -0.5),
                                   blurRadius: 0.5,
-                                  spreadRadius: 0.2),
-                              BoxShadow(
-                                color: Colors.white,
-                                offset: Offset(-0.5, -0.5),
-                                blurRadius: 0.5,
-                                spreadRadius: 0.2,
-                              ),
-                            ]),
-                        child: Icon(
-                          Icons.sticky_note_2_outlined,
-                          color: Colors.grey.shade800,
-                          size: 35,
+                                  spreadRadius: 0.2,
+                                ),
+                              ]),
+                          child: Icon(
+                            Icons.sticky_note_2_outlined,
+                            color: Colors.grey.shade800,
+                            size: 35,
+                          ),
                         ),
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context)
-                          .push(HeroDialogRoute(builder: (context) {
-                        return _AddNotePopupCard(title: videoTitle);
-                      }));
+                      setState(() {
+                        Navigator.of(context)
+                            .push(HeroDialogRoute(builder: (context) {
+                          return _AddNotePopupCard(title: videoTitle);
+                        }));
+                      });
                     },
                   ),
                 ],
@@ -169,16 +176,24 @@ class _VideoPageViewState extends State<VideoPageView> {
                     Expanded(
                         child: Padding(
                       padding: const EdgeInsets.only(top: 30),
-                      child: Notes(
-                        title: videoTitle,
-                        not: Text(
-                          "of"
-
-                          // finalNoteData[finalNoteData.indexOf(videoTitle) + 1]
-                          ,
-                          style: TextStyle(fontSize: 17),
+                      child: Expanded(
+                          child: SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: noteColors.bg,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          child: Text(
+                            mybox.get(videoTitle) == null
+                                ? "Bir not yazın..."
+                                : mybox.get(videoTitle),
+                            style: TextStyle(color: Colors.grey, fontSize: 17),
+                          ),
                         ),
-                      ),
+                      )),
                     ))
                   ],
                 ),
@@ -201,6 +216,7 @@ class _AddNotePopupCard extends StatefulWidget {
 }
 
 class _AddNotePopupCardState extends State<_AddNotePopupCard> {
+  final mybox = Hive.box('box');
   var title;
   _AddNotePopupCardState({required this.title});
   final textController = TextEditingController();
@@ -212,6 +228,7 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
   }
 
   void dispose() {
+    setState(() {});
     textController.dispose();
     super.dispose();
   }
@@ -243,13 +260,16 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
                     ),
                     TextField(
                       keyboardType: TextInputType.multiline,
-                      controller: textController,
+                      controller: TextEditingController(text: mybox.get(title)),
                       decoration: InputDecoration(
                         hintText: 'Bir not yazın',
                         border: InputBorder.none,
                       ),
                       cursorColor: Colors.white,
                       maxLines: 7,
+                      onChanged: (value) {
+                        mybox.put(title, value);
+                      },
                     ),
                     const Divider(
                       color: Colors.white,
@@ -257,7 +277,9 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
                     ),
                     TextButton(
                       onPressed: () async {
-                        // await notePreferences.init();
+                        setState(() {
+                          Navigator.pop(context);
+                        });
                       },
                       child: const Text('Kaydet'),
                     ),

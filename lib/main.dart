@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wvdeneme/modules_view.dart';
+import 'package:wvdeneme/notesHive.dart';
 import 'package:wvdeneme/video_screen_view.dart';
 import 'login_view.dart';
 import 'home_page_view.dart';
@@ -8,11 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'premodules_view.dart';
-import 'package:wvdeneme/models/notePreferences.dart';
 
-void main() async {
+late Box box;
+Future<void> main() async {
+  await Hive.initFlutter();
+  box = await Hive.openBox('box');
+  Hive.registerAdapter(notesHiveAdapter());
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(MyApp());
 }
 
@@ -27,9 +31,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     getLoginData().whenComplete(() async {
-      print('get navi öncesi');
       Future.delayed(Duration(seconds: 2));
-      print('get navi sonraası');
     });
     super.initState();
   }
