@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wvdeneme/main.dart';
 import 'premodules_view.dart';
 import '../models/class_models.dart';
 import 'dart:io';
@@ -29,10 +27,10 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async {
         DateTime now = DateTime.now();
         if (currentTime == null ||
-            now.difference(currentTime) > Duration(seconds: 2)) {
+            now.difference(currentTime) > const Duration(seconds: 2)) {
           //add duration of press gap
           currentTime = now;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text(
                   'Çıkmak için yeniden basın'))); //scaffold message, you can show Toast message too.
           return Future.value(false);
@@ -40,7 +38,6 @@ class _HomePageState extends State<HomePage> {
           SystemNavigator.pop();
           exit(0);
         }
-        ;
       },
       child: SafeArea(
         child: Scaffold(
@@ -91,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                               // flutter dersleri
                               Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (context) {
-                                return PreModules();
+                                return const PreModules();
                               }));
                             },
                           ),

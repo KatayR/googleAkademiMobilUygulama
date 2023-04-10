@@ -41,7 +41,6 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       finalLoginData = obtainedLoginData;
     });
-    print(finalLoginData);
   }
 
   @override
@@ -49,10 +48,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        duration: 2000,
+        duration: 1000,
         splash: 'assets/splash.jpg',
-        nextScreen: finalLoginData == null ? GirisEkrani() : HomePage(),
-        splashTransition: SplashTransition.slideTransition,
+        nextScreen:
+            finalLoginData == null ? const LoginView() : const HomePage(),
+        splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,
       ),
     );

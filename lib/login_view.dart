@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
-import 'webViewFile.dart';
-import 'home_page_view.dart';
+import 'webView_File.dart';
 
-class GirisEkrani extends StatefulWidget {
-  const GirisEkrani({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
 
   @override
-  State<GirisEkrani> createState() => _GirisEkraniState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _GirisEkraniState extends State<GirisEkrani> {
+class _LoginViewState extends State<LoginView> {
   String email = "";
   String password = "";
 
@@ -30,7 +29,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
             padding: EdgeInsets.fromLTRB(0 * fem, 35 * fem, 0 * fem, 30 * fem),
             width: double.infinity,
 
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xffffffff),
             ),
             child: Column(
@@ -60,7 +59,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                         63 * fem, 43.52 * fem, 63 * fem, 48.48 * fem),
                     width: 392 * fem,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage(
                           'assets/page-1/images/bg-new.png',
@@ -68,7 +67,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0x3f000000),
+                          color: const Color(0x3f000000),
                           offset: Offset(0 * fem, 4 * fem),
                           blurRadius: 2 * fem,
                         ),
@@ -87,7 +86,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                               28 * fem, 7 * fem, 28 * fem, 14 * fem),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: Color(0xffffffff),
+                            color: const Color(0xffffffff),
                             borderRadius: BorderRadius.circular(50 * fem),
                           ),
                           child: TextField(
@@ -103,7 +102,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                               fontSize: 12 * ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.2125 * ffem / fem,
-                              color: Color(0xff000000),
+                              color: const Color(0xff000000),
                             ),
                           ),
                         ),
@@ -115,7 +114,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                               27 * fem, 8 * fem, 27 * fem, 12 * fem),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: Color(0xffffffff),
+                            color: const Color(0xffffffff),
                             borderRadius: BorderRadius.circular(50 * fem),
                           ),
                           child: TextField(
@@ -131,7 +130,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                               fontSize: 12 * ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.2125 * ffem / fem,
-                              color: Color(0xff000000),
+                              color: const Color(0xff000000),
                             ),
                           ),
                         ),
@@ -149,7 +148,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                                         builder: (context) => WebScreen(
                                             email: email, password: password)));
                               },
-                              child: Text(
+                              child: const Text(
                                 'GİRİŞ',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 17),
@@ -162,7 +161,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    margin: EdgeInsetsDirectional.only(top: 30),
+                    margin: const EdgeInsetsDirectional.only(top: 30),
                     child: Image.asset(
                       'assets/page-1/images/n-1.png',
                       fit: BoxFit.fitWidth,
@@ -175,6 +174,5 @@ class _GirisEkraniState extends State<GirisEkrani> {
         ),
       ),
     );
-    ;
   }
 }

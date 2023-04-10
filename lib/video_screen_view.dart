@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wvdeneme/models/class_models.dart';
-
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../models/hero_dialog_route.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class VideoPageView extends StatefulWidget {
@@ -33,7 +30,7 @@ class _VideoPageViewState extends State<VideoPageView> {
     super.initState();
     _controller = YoutubePlayerController(
         initialVideoId: DerslerMap.modulListOfMaps[moduleIndex].values.first,
-        flags: YoutubePlayerFlags(
+        flags: const YoutubePlayerFlags(
           autoPlay: false,
           mute: false,
           isLive: false,
@@ -67,10 +64,10 @@ class _VideoPageViewState extends State<VideoPageView> {
               backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: GoogleColors.blue,
-                iconTheme: IconThemeData(color: Colors.black),
+                iconTheme: const IconThemeData(color: Colors.black),
                 title: Text(
                   videoTitle,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
                 flexibleSpace: Container(
                     decoration: BoxDecoration(
@@ -89,14 +86,15 @@ class _VideoPageViewState extends State<VideoPageView> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: noteColors.bg,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
                             boxShadow: [
                               BoxShadow(
                                   color: (Colors.grey[400])!,
-                                  offset: Offset(0.5, 0.5),
+                                  offset: const Offset(0.5, 0.5),
                                   blurRadius: 0.5,
                                   spreadRadius: 0.2),
-                              BoxShadow(
+                              const BoxShadow(
                                 color: Colors.white,
                                 offset: Offset(-0.5, -0.5),
                                 blurRadius: 0.5,
@@ -138,12 +136,12 @@ class _VideoPageViewState extends State<VideoPageView> {
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
                           moduleLabel,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                       ),
                       ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount:
@@ -157,7 +155,7 @@ class _VideoPageViewState extends State<VideoPageView> {
                                 ? Colors.grey
                                 : Colors.green.shade50,
                             child: ListTile(
-                              leading: Icon(Icons.ondemand_video_sharp),
+                              leading: const Icon(Icons.ondemand_video_sharp),
                               title: Text(DerslerMap
                                   .modulListOfMaps[moduleIndex].keys
                                   .toList()[index]),
@@ -191,14 +189,15 @@ class _VideoPageViewState extends State<VideoPageView> {
                   Container(
                       decoration: BoxDecoration(
                           color: noteColors.bg,
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
                           boxShadow: [
                             BoxShadow(
                                 color: (Colors.grey[400])!,
-                                offset: Offset(0.2, 0.2),
+                                offset: const Offset(0.2, 0.2),
                                 blurRadius: 0.5,
                                 spreadRadius: 0.2),
-                            BoxShadow(
+                            const BoxShadow(
                               color: Colors.white,
                               offset: Offset(-1.5, -1.5),
                               blurRadius: 1,
@@ -224,15 +223,15 @@ class _VideoPageViewState extends State<VideoPageView> {
                         child: Expanded(
                             child: SingleChildScrollView(
                           child: Container(
-                            padding: EdgeInsets.all(17),
+                            padding: const EdgeInsets.all(17),
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
                                       color: (Colors.grey[400])!,
-                                      offset: Offset(0.2, 3.2),
+                                      offset: const Offset(0.2, 3.2),
                                       blurRadius: 0.5,
                                       spreadRadius: 0.2),
-                                  BoxShadow(
+                                  const BoxShadow(
                                     color: Colors.white,
                                     offset: Offset(-1.5, -1.5),
                                     blurRadius: 1,
@@ -240,16 +239,16 @@ class _VideoPageViewState extends State<VideoPageView> {
                                   ),
                                 ],
                                 color: noteColors.bg,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(15))),
                             width: MediaQuery.of(context).size.width * 0.94,
                             height: MediaQuery.of(context).size.height * 0.52,
                             child: Text(
                               mybox.get(videoTitle) == null
                                   ? "Bir not yazın..."
                                   : mybox.get(videoTitle),
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 17),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 17),
                             ),
                           ),
                         )),
@@ -322,14 +321,15 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
                       height: 40,
                       decoration: BoxDecoration(
                           color: Colors.red.shade200,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
                           boxShadow: [
                             BoxShadow(
                                 color: (Colors.grey[400])!,
-                                offset: Offset(0.9, 0.3),
+                                offset: const Offset(0.9, 0.3),
                                 blurRadius: 0.3,
                                 spreadRadius: 0.2),
-                            BoxShadow(
+                            const BoxShadow(
                               color: Colors.white,
                               offset: Offset(-0.3, -0.3),
                               blurRadius: 0.1,
@@ -360,11 +360,11 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
                                   ],
                                 ),
                               ),
-                          icon: Icon(Icons.delete_forever)),
+                          icon: const Icon(Icons.delete_forever)),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: const Divider(
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: Divider(
                         color: Colors.white,
                         thickness: 0.9,
                       ),
@@ -377,7 +377,7 @@ class _AddNotePopupCardState extends State<_AddNotePopupCard> {
                               // widget.position.toString() +
                               //     "\n" +
                               mybox.get(title)),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Not almak için buraya dokunun...',
                         border: InputBorder.none,
                       ),
