@@ -109,6 +109,7 @@ class WebScreenState extends State<WebScreen> with TickerProviderStateMixin {
           },
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) async {
+            print("deneme yapılıyor");
             // ********
             if (request.url
                 .startsWith('https://oyunveuygulamaakademisi.com/egitimler')) {
