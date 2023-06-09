@@ -1,6 +1,10 @@
 Oyun ve Uygulama Akademisi mobil uygulaması
 
-AppJam için, sevgiyle hazırlanmıştır
+AppJam için, sevgiyle hazırlanmıştır.
+
+Video:
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/mnOesnFVh1o/0.jpg)](https://www.youtube.com/watch?v=mnOesnFVh1o "AppJam uygulaması")
 
 ## Neler var? 
 
